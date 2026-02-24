@@ -1,20 +1,54 @@
 /**
+ * This class calculates the average of test scores entered by the user.
+ * The user can enter as many test scores as they like, and the program will calculate the average when the user is finished.
  * Reed Lowry
+ * 02/23/2026
  * Tests.java
- * This program calculates and prints the average of three test scores.
- * 02-01-2026
  */
+import java.util.Scanner;
 
 public class Tests {
-    public static void main(String[] args) {
-        double test1 = 88.0;
-        double test2 = 78.9;
-        double test3 = 97.6;
-        double average = (test1 + test2 + test3) / 3;
+   private double ave;
+   private int count;
+   private int score;
 
-        System.out.println("Test score 1:   " + test1);
-        System.out.println("Test score 2:  " + test2);
-        System.out.println("Test score 3:  " + test3);
-        System.out.println("The average of 3 test scores is:  " + average);
-    }
+   public Tests() {
+      ave = 0.0;
+      count = 0;
+      score = 0;
+   }
+
+   public void getAverage() {
+      Scanner scnr = new Scanner(System.in);
+      int sum = 0;
+      System.out.println("Enter test scores (-1 to quit):");
+      score = scnr.nextInt();
+      while (score != -1) {
+         sum += score;
+         count++;
+         System.out.println("Enter test scores (-1 to quit):");
+         score = scnr.nextInt();
+      }
+      ave = (double) sum / count;
+   }
+
+   public double getAve() {
+      return ave;
+   }
+
+   public int getCount() {
+      return count;
+   }
+
+   public int getScore() {
+      return score;
+   }
+
+   public void setScore(int newScore) {
+      score = newScore;
+   }
+
+   public String toString() {
+      return String.format("The average of the %d scores entered is %.2f.", count, ave);
+   }
 }
